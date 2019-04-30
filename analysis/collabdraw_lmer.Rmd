@@ -1,0 +1,67 @@
+---
+title: "collabdraw_lmer"
+author: "jefan"
+date: "3/7/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggthemes)
+library(lme4)
+library(lmerTest)
+library(brms)
+#library(Rmisc)
+library(tidyboot)
+```
+
+## Import group data
+
+```{r}
+d <- read_csv('../results/csv/collabdraw_preds.csv') 
+d
+```
+
+### Basic stats: accuracy by object & condition 
+```{r}
+## add numeric accuracy column
+d <- d %>% 
+  mutate(correct_binary = ifelse(correct == 'True', 1, 0))
+
+## look at accuracy by condition
+d %>%  
+  group_by(condition) %>%
+  summarize(column=mean(correct_binary))
+```
+
+
+### Fit mixed-effects model to accuracy, and compare different definitions of random effects structure 
+```{r}
+m1 <- glmer(correct_binary ~ condition + (1 | className), 
+            data = d, 
+            family="binomial")
+
+m2 <- glmer(correct_binary ~ condition + (1 | gameID), 
+            data = d, 
+            family="binomial")
+
+m3 <- glmer(correct_binary ~ condition + (1 | gameID) + (1 | className), 
+            data = d, 
+            family="binomial")
+
+m4 <- glmer(correct_binary ~ condition + (1 + condition | gameID) + (1 + condition | className), 
+            data = d, 
+            family="binomial")
+```
+
+### Model comparison
+```{r}
+anova(m1,m2,m3,m4)
+```
+
+### Best model summary
+```{r}
+summary(m3)
+```
