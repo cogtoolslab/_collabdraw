@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>collabdraw experiment</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../lib/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="../lib/bootstrap-theme.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+    </script>
+  </head>
+
+  <body role="document">
+
+    <div class="container theme-showcase" role="main">
+
+      </br>
+
+      <div id="show">
+
+      <div style="text-align: center; margin-left: auto; margin-right: auto">
+      </div>
+      
+      <div class="page-header" style="text-align: center">
+        <h3>Welcome!</h3>
+      </div>
+      
+      <div class="well" style="width: 540px; margin: 0 auto"> 
+
+      	<p align="left" id="instruct-text">You are about to play a fun drawing game! The goal of the game is to make drawings that will be recognizable to someone else.
+      	</p>
+
+        <p> A fun twist: sometimes you will be collaborating with the computer, taking turns producing one stroke each to make a recognizable drawing of some target object. Other times, you will make drawings on your own. When you are satisfied that your drawing is recognizable, click the Submit button. </p>
+
+        <p>Please only draw the object and do NOT draw any surrounding context (e.g., water, grass). Please do NOT draw any words or non-pictorial symbols (e.g., arrows). </p>
+
+      	<p> We expect the average game to last approximately 15-20 minutes. </p>
+
+      	<p> Note: We strongly recommend using Chrome. Please avoid resizing or refreshing the browser window during this HIT. If you have any questions or run into any issues, please send us an email (<b><a href="mailto://sketchloop@gmail.com">sketchloop@gmail.com</a> </b>). Please pay attention and do your best! Thank you!</p>
+      </div>
+
+      <p>
+        <center><button id="agree" type="button" style="display: none" class="btn btn-sm btn-primary">CONTINUE</button></center>
+	<noscript><strong>JavaScript must be enabled to start.</strong></noscript>
+      </p>
+      <hr>
+      
+      <u><p id="legal">Consenting to Participate:</p></u>
+
+      <p id="legal">By agreeing to continue, you are
+      participating in a study being performed by cognitive scientists
+      in the Stanford Department of Psychology. If you have questions
+      about this research, please contact the <b>Sketchloop Admin</b> at 
+      <b><a href="mailto://sketchloop@gmail.com">sketchloop@gmail.com</a> </b>.
+      You must be at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the
+      following questions. You may decline further participation, at
+      any time, without adverse consequences. Your anonymity is
+      assured; the researchers who have requested your participation
+      will not receive any personal information about you.</p>
+
+      </div> <!-- show -->
+
+    </div> <!-- /container -->
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var urlParams;
+        var match,
+	      pl     = /\+/g,  // Regex for replacing addition symbol with a space
+	      search = /([^&=]+)=?([^&]*)/g,
+	      decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+	      query  = location.search.substring(1);
+
+      urlParams = {};
+      while (match = search.exec(query))
+      urlParams[decode(match[1])] = decode(match[2]);
+      
+      console.log(urlParams)
+      if(urlParams.assignmentId != "ASSIGNMENT_ID_NOT_AVAILABLE") {
+         $("#agree").show()
+      } 
+
+      document.getElementById("agree").onclick = function () {
+        var workerId = urlParams.workerId;
+        var assignmentId = urlParams.assignmentId;
+        var hitId = urlParams.hitId;
+        var turkSubmitTo = urlParams.turkSubmitTo;
+        location.replace("./collab.html?workerId=" + workerId
+                         + "&assignmentId=" + assignmentId
+                         + "&hitId=" + hitId + "&turkSubmitTo=" + turkSubmitTo);
+      };
+      });
+
+    </script>    
+    <script src="../lib/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,194 @@
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  overscroll-behavior-y: contain;
+}
+
+body {
+  font-family: 'Nanum Pen Script', monospace;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  --primary: #EC5953;
+  --secondary: #F7CC4E;
+}
+
+header {
+  padding: 12px;
+  text-align: center;
+  background-color: var(--primary);
+  color: white;
+  width: 100%;
+  padding: 0 20px;
+}
+
+
+header .wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  font-size: 40px;
+  flex-grow: 1;
+}
+
+.control {
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin: 0 8px;
+  background: var(--secondary);
+  color: var(--primary);
+  vertical-align: middle;
+}
+
+button {
+  border: transparent;
+  text-align: left;
+  text-align: center;
+  font-family: inherit;
+  font-size: 40px;
+  font-weight: inherit;
+}
+
+/* Hack: hide the text. */
+select {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+.select-wrapper {
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  cursor: pointer;
+  fill: var(--primary);
+}
+
+#currentModel {
+  width: 70%;
+  display: inline-block;
+}
+
+#sketch {
+  flex: 1;
+  text-align: center;
+  background: var(--primary);
+}
+
+#sketch > canvas {
+  /* Use box-shadow instead of border so that the canvas drawing isn't offset */
+  box-shadow: 0 0 0 10px var(--secondary);
+}
+
+#sketch.loading {
+  pointer-events: none;
+  opacity: 0.7;
+  filter: blur(3px);
+}
+
+#whoseTurn {
+  /*width: 200px;*/
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  display: inline-block;
+  color: var(--secondary);
+}
+/*************
+ Progress bar
+**************/
+.progress-wrapper {
+  width: 100%;
+  height: 10px;
+  background-color: var(--primary);
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary);
+  position: relative;
+  top: 0;
+  left: 0%;
+  xanimation: cycle 3s ease-in infinite;
+  overflow: hidden;
+}
+
+@keyframes cycle {
+  0% {
+    transform: translate(-100%, 0%);
+  }
+  100% {
+    transform: translate(500%, 0%);
+  }
+}
+
+
+/***********
+ * Splash
+ ***********/
+
+#splash {
+  background-color: var(--primary);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+  overflow: auto;
+  transition: 1s transform;
+  transform: translate3d(0, 0, 0);
+  z-index: 2;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#splash.hidden {
+  transform: translate3d(0, -200%, 0);
+}
+
+#splash h1 {
+  color: var(--secondary);
+  flex-grow: initial;
+  font-size: 60px;
+}
+
+#splash .content {
+  color: white;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 40px;
+}
