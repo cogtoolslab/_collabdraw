@@ -2,9 +2,30 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.RHistory
+*.synctex.gz
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.pdf
+
+auth.json
+auth.txt
+auth_cogtoolslab.txt
 
 # C extensions
 *.so
+
+.DS_Store
+*.png
+*.jpeg
+*.pdf
+*.svg
+*.json
+*.csv
 
 # Distribution / packaging
 .Python
@@ -102,3 +123,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# JS
+node_modules
+es5
+.Rproj.user
