@@ -20,7 +20,7 @@ Sketching is a natural way to communicate our ideas quickly and to collaborate i
 
 </pre>
 
-## [Read our ACM Creativity & Cognition '19 short paper](papers/ACMCC_collabdraw_revised.pdf)
+## [Read our ACM Creativity & Cognition '19 short paper](papers/collabdraw_revised_accessible.pdf)
 
 ![](assets/collabdraw_task_display.png)
 
