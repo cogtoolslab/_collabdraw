@@ -1,0 +1,230 @@
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html, body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior-y: contain;
+}
+
+body {
+  font-family: 'Nanum Pen Script', monospace;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  --primary: #EC5953;
+  --secondary: #F7CC4E;
+}
+
+h1 {
+  font-size: 40px;
+  flex-grow: 1;
+}
+
+.control {
+  font-family: 'Nanum Pen Script', monospace;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 4px 8px;
+  margin: 10px;
+  background: var(--secondary);
+  color: var(--primary);
+  vertical-align: middle;
+  font-size: 32px;
+  margin: 0.2em;
+}
+
+.control.outline {
+  background: transparent;
+  color: var(--secondary);
+  border: 4px solid var(--secondary);
+}
+button {
+  border: transparent;
+  text-align: left;
+  text-align: center;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+#sketch {
+  flex: 1;
+  text-align: center;
+  background: var(--primary);
+}
+
+#sketch > canvas {
+  /* Use box-shadow instead of border so that the canvas drawing isn't offset */
+  box-shadow: 0 0 0 10px var(--secondary);
+}
+
+#sketch.loading {
+  pointer-events: none;
+  opacity: 0.7;
+  filter: blur(3px);
+}
+
+#whoseTurn {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  display: inline-block;
+  color: var(--secondary);
+}
+
+#feedbackDialog {
+  position: absolute;
+  width: 80%;
+  max-width: 500px;
+  top: 30%;
+  left: calc(50% - 250px);
+  background: white;
+  border: 8px solid var(--secondary);
+  box-shadow: 8px 8px var(--primary);
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+}
+
+#feedbackEmoji {
+  font-family: sans-serif;
+  font-size: 60px;
+}
+
+.horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.wrap {
+    flex-wrap: wrap;
+    margin: 2em 0em 0.5em 0em;
+}
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+/*************
+ Progress bar
+**************/
+.progress-wrapper {
+  width: 100%;
+  height: 10px;
+  background-color: var(--primary);
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary);
+  position: relative;
+  top: 0;
+  left: 0%;
+  overflow: hidden;
+}
+
+@keyframes cycle {
+  0% {
+    transform: translate(-100%, 0%);
+  }
+  100% {
+    transform: translate(500%, 0%);
+  }
+}
+
+
+/***********
+ * Screens
+ ***********/
+#splash, #game {
+  background-color: var(--primary);
+  overflow: hidden;
+  padding: 40px;
+  height: 100vh;
+}
+
+#game.blur {
+  filter: blur(2px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.game-content {
+  padding: 12px;
+  text-align: center;
+  background-color: var(--primary);
+  color: white;
+  max-width: 800px;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  font-size: 40px;
+  xoverflow: hidden;
+}
+
+#splash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  transition: 1s transform;
+  transform: translate3d(0, 0, 0);
+  z-index: 2;
+}
+
+#splash.hidden {
+  transform: translate3d(0, -200%, 0);
+}
+
+#splash h1 {
+  font-family: 'Nanum Pen Script', monospace;
+  font-size: 60px;
+  color: var(--secondary);
+  flex-grow: initial;
+}
+
+#splash .content {
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 22px;
+}
+
+#legal {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  padding-top: 24px;
+}
+
+#contact{
+  color:#F7CC4E;
+}
+
+@media screen and (max-width: 600px) {
+  #splash, #game {
+    padding: 20px;
+  }
+  .game-content, .control {
+    font-size: 30px;
+  }
+  #feedbackDialog {
+    width: 90%;
+    left: 5%;
+  }
+}

@@ -1,0 +1,78 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Collaboration</title>
+  <link rel="stylesheet" href="collab.css">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>  
+</head>
+<body>
+  <div id="splash">
+    <div class="content">
+        <h1>Let's draw together!</h1>
+        <p>
+          You are about to play a fun drawing game! Your goal is to make drawings that would be recognizable to someone else. Here's the twist: sometimes you will be collaborating with the computer, taking turns producing one stroke at a time. Other times, you will make drawings on your own. When you are satisfied that your drawing is recognizable, click the submit button. Then the computer will tell you if it thinks that someone else might be able to recognize what you drew!
+        </p>
+
+        <p id="legal">
+          <u>Consenting to Participate:</u> By agreeing to continue, you are
+          participating in a study being performed by cognitive scientists
+          in the Stanford Department of Psychology. If you have questions
+          about this research, please contact the researchers at
+          <b><a id="contact" href="mailto://sketchloop@gmail.com">sketchloop@gmail.com</a> </b>.
+          You must be at least 18 years old to participate. Your participation in this
+          research is voluntary. You may decline further participation, at any time,
+          without adverse consequences. Your anonymity is assured; the researchers
+          who have requested your participation will not receive any personal information about you.
+      </p>
+
+        <button class="control" id="btnGo">
+          Let's go!
+        </button>
+      </div>
+  </div>
+  <div id="game">
+    <div class="game-content vertical">
+      <div class="horizontal wrap">
+        <span id="instructionPre">Let's draw</span>
+        <span id="currentModel" class="control outline"></span>
+        <span id="instructionPost">together. </span>
+        <span id="whoseTurn"></span>
+      </div>
+      <div>
+        <button id="btnAdvance" class="control">
+          submit <span id="trialCounter">trial 1</span>
+        </button>
+      </div>
+      <div id="sketch"></div>
+
+    </div>
+  </div>
+
+  <div id="feedbackDialog" hidden>
+    <div id="feedbackEmoji"></div>
+    <div id="feedback"></div>
+  </div>
+
+</body>
+  <script type="text/javascript" src="../lib/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@magenta/sketch@0.1.3/dist/magentasketch.min.js"></script>
+  <script src="collab.js"></script>
+  <script src="../lib/classifier/quick_weights96.js"></script>
+  <script src="classifier.js"></script>
+
+  <script>
+    // Don't create the game until the user dismisses this splash, or else
+    // the p5 canvas will steal all the mouse events, and the user can't
+    // scroll this page.
+    btnGo.addEventListener('click', () => {
+      const p5Sketch = new p5(sketch, 'sketch');
+      p5Sketch.closeSplash();
+    });
+  </script>
+</html>
