@@ -29,7 +29,7 @@ Sketching is a natural way to communicate our ideas quickly and to collaborate i
 
 </pre>
 
-## [Play the collabdraw game](https://cogtoolslab.org:8888/collab96/collab.html)
+## [Play the collabdraw game](https://cogtoolslab.org:8870/collab96/collab.html)
 
 ![](assets/gifs/collab_whale.gif)
 
